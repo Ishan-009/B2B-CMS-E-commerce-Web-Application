@@ -1,0 +1,22 @@
+$formArray= array(
+
+					"name"=> $this->input->post('name'),
+					"email"=> $this->input->post('email'),
+					"subject"=>$this->input->post('subject'),
+					"message"=>$this->input->post('message')
+
+
+
+				);
+			$data =	$this->User_model->SendUserInquiry($formArray);
+
+				if($data==true)
+				{
+					$this->session->set_flashdata('Message', 'Your Message Has Been Sent , Thanks For Contacting Us. ');
+					redirect(base_url().'user/Phome/Contact');
+				}
+				else
+				{
+					$this->session->set_flashdata('MessageE', 'Your Message Has Not  Been Sent , Please Try Again SomeTime Later ');
+					redirect(base_url().'user/Phome/Contact');
+				}
